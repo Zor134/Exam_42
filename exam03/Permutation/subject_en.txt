@@ -29,7 +29,7 @@ cba$
 a b c
 ___
 a
-aa  //deja un a avant donc backtrack
+aa  
 ab
 abc // if 3/3 print
 
