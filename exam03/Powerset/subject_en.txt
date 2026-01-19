@@ -13,7 +13,6 @@ it must match the order in the initial set s.
 This way, you should not have any duplicates (eg: '1 2' and '2 1').
 For example, using the command ./powerset 5 1 2 3 4 5
 this output is valid:
-1 2 2
 2 3
 5
 this one is also valid:
