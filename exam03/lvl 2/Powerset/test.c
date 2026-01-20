@@ -14,7 +14,7 @@ void    print_tab(int *tab, int tab_len)
 }
 
 
-int *init_binary_tab(int ac, char **av)
+int *init_binary_tab(int ac)
 {
     int *tab = malloc(sizeof(int) * (ac - 2));
     if (!tab)
@@ -51,7 +51,7 @@ int     increment_binary(int *binary_tab, int tab_len)
             break;
         if (i == tab_len )
             return 1;
-            i++;
+        i++;
     }
 
     while (binary_tab[tab_len] == 1)
@@ -64,7 +64,6 @@ int     increment_binary(int *binary_tab, int tab_len)
 }
 int     is_solution_right(int *binary_tab, int tab_len, int *tab, int n)
 {
-    int i = 0;
     int total = 0;
 
     while (tab_len >= 0)
@@ -79,7 +78,7 @@ int     is_solution_right(int *binary_tab, int tab_len, int *tab, int n)
     else
         return 1;
 }
-void    print_solution(int *binary_tab, int tab_len, int* tab, int n)
+void    print_solution(int *binary_tab, int tab_len, int* tab)
 {
     //printf("test");
     int i = 0;
@@ -104,15 +103,19 @@ void    print_solution(int *binary_tab, int tab_len, int* tab, int n)
        // printf("test");
 
          if (is_solution_right(binary_tab, tab_len, tab, n) == 0)
-             print_solution(binary_tab, tab_len, tab, n);
+             print_solution(binary_tab, tab_len, tab);
      }
      return;
  }
 
 int main(int ac , char** av)
 {
+    if (ac < 3)
+        return (1);
     int n = atoi(av[1]);
-    int *binary_tab = init_binary_tab(ac, av);
+    if (n == 0)
+        write(1, "\n", 1);
+    int *binary_tab = init_binary_tab(ac);
     int *tab = init_tab(ac, av);
     // print_tab(tab, ac - 2);
     // print_tab(binary_tab, ac - 2);

@@ -73,6 +73,8 @@ void    solve(int av_len, char *tab, char *av, int i)
 
 int main(int ac, char **av)
 {
+    if (ac != 2)
+        return 1;
     char *tab = malloc(ft_strlen(av[1]) + 1);
     if (!tab)
         return 1;
