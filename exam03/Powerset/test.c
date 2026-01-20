@@ -49,34 +49,65 @@ int     increment_binary(int *binary_tab, int tab_len)
     {
         if (binary_tab[i] == 0)
             break;
-        i++;
-        if (i == tab_len)
+        if (i == tab_len )
             return 1;
+            i++;
     }
 
-    if (binary_tab[tab_len] == 0)
-        binary_tab[tab_len] = 1;
-    else
+    while (binary_tab[tab_len] == 1)
     {
-        while (binary_tab[tab_len] == 1)
-        {
-            binary_tab[tab_len] = 0;
-            tab_len--;
-        }
         binary_tab[tab_len] = 0;
+        tab_len--;
     }
+    binary_tab[tab_len] = 1;
     return 0;
 }
+int     is_solution_right(int *binary_tab, int tab_len, int *tab, int n)
+{
+    int i = 0;
+    int total = 0;
 
-// void    solve(int *binary_tab, int tab_len, int *tab, int n)
-// {
-//     while(increment_binary(binary_tab, tab_len))
-//     {
-//         if (is_solution_right(binary_tab, tab_len, tab, n))
-//             print_solution(binary_tab, tab_len, tab, n);
-//     }
-//     return;
-// }
+    while (tab_len >= 0)
+    {
+        if (binary_tab[tab_len] == 1)
+            total += tab[tab_len];
+        tab_len--;
+    }
+    //printf("total vaut %d\n", total);
+    if (total == n)
+        return 0;
+    else
+        return 1;
+}
+void    print_solution(int *binary_tab, int tab_len, int* tab, int n)
+{
+    //printf("test");
+    int i = 0;
+    while (tab_len >= 0)
+    {
+        if (binary_tab[tab_len] == 1 && i != 0)
+            printf(" ");
+        if (binary_tab[tab_len] == 1)
+        {
+            i++;
+            printf("%d", tab[tab_len]);
+        }
+        tab_len--;
+    }
+    printf("\n");
+}
+
+ void    solve(int *binary_tab, int tab_len, int *tab, int n)
+ {
+     while (increment_binary(binary_tab, tab_len) == 0)
+     {
+       // printf("test");
+
+         if (is_solution_right(binary_tab, tab_len, tab, n) == 0)
+             print_solution(binary_tab, tab_len, tab, n);
+     }
+     return;
+ }
 
 int main(int ac , char** av)
 {
@@ -85,13 +116,15 @@ int main(int ac , char** av)
     int *tab = init_tab(ac, av);
     // print_tab(tab, ac - 2);
     // print_tab(binary_tab, ac - 2);
-    // solve(binary_tab, ac - 2, tab, n);
+    solve(binary_tab, ac - 3, tab, n);
 
+    /*
     int i = 0;
     while (i < 32)
     {
-        increment_binary(binary_tab, ac - 2);
+        increment_binary(binary_tab, ac - 3);
         print_tab(binary_tab, ac - 2);
         i++;
     }
+    */
 }
